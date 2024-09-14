@@ -1,0 +1,39 @@
+# mm-shopping-cart/docker-compose.yml
+
+services:
+  db:
+    image: postgres:latest
+    container_name: mm-shopping-cart-db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: marketmaster
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/mm-shopping-cart.sql:/docker-entrypoint-initdb.d/mm-shopping-cart.sql
+    ports:
+      - "5437:5432"
+    networks:
+      - marketmaster-network
+
+  product_service:
+    build: .
+    container_name: mm-shopping-cart
+    ports:
+      - "5706:5706"
+    depends_on:
+      - db
+    environment:
+      FLASK_APP: app.py
+      FLASK_ENV: development
+    volumes:
+      - .:/app
+    networks:
+      - marketmaster-network
+
+volumes:
+  postgres_data:
+
+networks:
+  marketmaster-network:
+    external: true
