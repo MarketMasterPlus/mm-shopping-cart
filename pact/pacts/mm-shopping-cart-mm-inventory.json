@@ -4,6 +4,34 @@
   },
   "interactions": [
     {
+      "description": "a request for customer details",
+      "providerState": "it has a customer with cpf 11111111111",
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/customers/11111111111"
+      },
+      "response": {
+        "body": {
+          "addressid": "14",
+          "cpf": "11111111111",
+          "email": "r@r.com",
+          "fullname": "Rodrigo Alves Costa"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    },
+    {
       "description": "a request for inventory item details",
       "providerState": "it has inventory item details",
       "request": {
@@ -22,7 +50,7 @@
           "storeid": 34
         },
         "headers": {
-          "Content-Type": "application/json; charset=utf-8"
+          "Content-Type": "application/json"
         },
         "matchingRules": {
           "$.body": {

@@ -26,7 +26,7 @@ describe('Pact with Inventory service', () => {
         willRespondWith: {
           status: 200,
           headers: {
-            'Content-Type': 'application/json; charset=utf-8',
+            'Content-Type': 'application/json',
           },
           body: Matchers.somethingLike({
             id: 1,
