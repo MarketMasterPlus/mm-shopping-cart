@@ -1,0 +1,51 @@
+{
+  "consumer": {
+    "name": "mm-shopping-cart"
+  },
+  "interactions": [
+    {
+      "description": "a request for inventory item details",
+      "providerState": "it has inventory item details",
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/mm-inventory/1"
+      },
+      "response": {
+        "body": {
+          "id": 1,
+          "price": 6,
+          "productid": 36,
+          "stock": 10,
+          "storeid": 34
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "13.1.3"
+    },
+    "pactRust": {
+      "ffi": "0.4.22",
+      "models": "1.2.3"
+    },
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  },
+  "provider": {
+    "name": "mm-inventory"
+  }
+}
