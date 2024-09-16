@@ -4,22 +4,21 @@
   },
   "interactions": [
     {
-      "description": "a request for inventory item details",
-      "providerState": "it has inventory item details",
+      "description": "a request for customer details",
+      "providerState": "it has a customer with cpf 11111111111",
       "request": {
         "headers": {
           "Accept": "application/json"
         },
         "method": "GET",
-        "path": "/mm-inventory/1"
+        "path": "/customers/11111111111"
       },
       "response": {
         "body": {
-          "id": 1,
-          "price": 6,
-          "productid": 36,
-          "stock": 10,
-          "storeid": 34
+          "addressid": "14",
+          "cpf": "11111111111",
+          "email": "r@r.com",
+          "fullname": "Rodrigo Alves Costa"
         },
         "headers": {
           "Content-Type": "application/json"
@@ -46,6 +45,6 @@
     }
   },
   "provider": {
-    "name": "mm-inventory"
+    "name": "mm-customer"
   }
 }
