@@ -1,19 +1,19 @@
 // mm-shopping-cart/pact/tests/shoppingCartPact.spec.js
-import provider from '../pactSetup.js';
+import { inventoryProvider } from '../pactSetup.js';
 import { expect } from 'chai';
 import { Matchers } from '@pact-foundation/pact';
 import { hypotheticalGetInventoryItem } from '../utils/hypotheticalRequests.js';
 
 describe('Pact with Inventory service', () => {
-  before(() => provider.setup());
+  before(() => inventoryProvider.setup());
 
-  after(() => provider.finalize());
+  after(() => inventoryProvider.finalize());
 
-  afterEach(() => provider.verify());
+  afterEach(() => inventoryProvider.verify());
 
   describe('when a request to get inventory item details is made', () => {
     before(() => {
-      return provider.addInteraction({
+      return inventoryProvider.addInteraction({
         state: 'it has inventory item details',
         uponReceiving: 'a request for inventory item details',
         withRequest: {
@@ -40,7 +40,7 @@ describe('Pact with Inventory service', () => {
     });
 
     it('can process the inventory item details', async () => {
-      const fullUrl = `http://localhost:${provider.opts.port}/mm-inventory/1`;
+      const fullUrl = `http://localhost:${inventoryProvider.opts.port}/mm-inventory/1`;
       const response = await hypotheticalGetInventoryItem(fullUrl);
       expect(response.status).to.equal(200);
       expect(response.data).to.deep.include({

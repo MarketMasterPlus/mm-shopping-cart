@@ -2,7 +2,7 @@
 import { Pact } from '@pact-foundation/pact';
 import path from 'path';
 
-const provider = new Pact({
+export const inventoryProvider = new Pact({
     consumer: 'mm-shopping-cart',
     provider: 'mm-inventory',
     port: 0, // Dynamic port assignment
@@ -11,4 +11,11 @@ const provider = new Pact({
     logLevel: 'DEBUG',
 });
 
-export default provider;
+export const customerProvider = new Pact({
+    consumer: 'mm-shopping-cart',
+    provider: 'mm-customer',
+    port: 0, // Dynamic port assignment
+    log: path.resolve(process.cwd(), 'logs', 'pact.log'),
+    dir: path.resolve(process.cwd(), 'pacts'),
+    logLevel: 'DEBUG',
+});
